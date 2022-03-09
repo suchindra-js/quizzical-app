@@ -6,8 +6,8 @@ import { nanoid } from 'nanoid'
 export default function App() {
 
   const [quiz, setQuiz] = React.useState(JSON.parse(localStorage.getItem("quiz")) || [])
-  const [ansReveal, setAnsReveal] = React.useState(JSON.parse(localStorage.getItem("ansReveal")) || false)
-  const [correctAns, setCorrectAns] = React.useState(JSON.parse(localStorage.getItem("correctAns")) || 0)
+  const [revealAns, setrevealAns] = React.useState(JSON.parse(localStorage.getItem("revealAns")) || false)
+  const [totalScore, setTotalScore] = React.useState(JSON.parse(localStorage.getItem("totalScore")) || 0)
 
   function createNewQuiz() {
     fetch("https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple")
@@ -25,12 +25,12 @@ export default function App() {
 
   React.useEffect(() => {
     localStorage.setItem("quiz", JSON.stringify(quiz))
-    localStorage.setItem("ansReveal", JSON.stringify(ansReveal))
-    localStorage.setItem("correctAns", JSON.stringify(correctAns))
-  }, [quiz, ansReveal, correctAns])  
+    localStorage.setItem("revealAns", JSON.stringify(revealAns))
+    localStorage.setItem("totalScore", JSON.stringify(totalScore))
+  }, [quiz, revealAns, totalScore])  
 
   function selectAns(id, answer) {
-    if (!ansReveal) {
+    if (!revealAns) {
       setQuiz(prevQuiz => prevQuiz.map(quiz => {
         return quiz.id === id ? {...quiz, clicked: answer} : quiz
       }))
@@ -38,21 +38,21 @@ export default function App() {
   }
 
   function CheckAns() {
-    markCounter()
-    setAnsReveal(true)
+    scoreCounter()
+    setrevealAns(true)
   }
 
-  function markCounter() {
+  function scoreCounter() {
     console.log("ran")
     let totalMark = 0
     quiz.map(quiz => quiz.clicked === quiz.correctAns ? totalMark++ : totalMark)
-    setCorrectAns(totalMark)
+    setTotalScore(totalMark)
   }
 
   function reset() {
     setQuiz([])
-    setAnsReveal(false)
-    setCorrectAns(0)
+    setrevealAns(false)
+    setTotalScore(0)
   }
    
   const quizList = quiz.map(quiz => {
@@ -61,12 +61,12 @@ export default function App() {
     return <Quiz
       key = {quiz.id}
       id = {quiz.id}  
-      answers={ansArray} 
       question={quiz.question}
-      selectAns={selectAns}
-      clicked = {quiz.clicked}
-      ansReveal = {ansReveal}
+      answers={ansArray} 
       correctAns = {quiz.correctAns}
+      clicked = {quiz.clicked}
+      selectAns={selectAns}
+      revealAns = {revealAns}
 
     />
   })
@@ -76,10 +76,10 @@ export default function App() {
     <Intro handleClick={createNewQuiz}/> :
     <div className='quiz-list'>
       {quizList}
-      {!ansReveal ?
+      {!revealAns ?
       <button onClick={CheckAns}>Check Answers</button> :
       <>
-        <p>You scored {correctAns}/5 correct answers</p>
+        <p>You scored {totalScore}/5 correct answers</p>
         <button onClick={reset}>Play Again</button>
       </>}
     </div>

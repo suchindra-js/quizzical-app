@@ -8,7 +8,7 @@ export default function Quiz(props) {
                 {props.answers.map(answer => 
                     <button
                         style={
-                            !props.ansReveal ?
+                            !props.revealAns ?
                             {backgroundColor: props.clicked === answer ? "#D6DBF5" : "transparent"} :
                             {backgroundColor: props.clicked === answer && props.clicked === props.correctAns ? "#94D7A2" : props.clicked === answer && props.clicked !== props.correctAns ? "#F8BCBC" : "transparent"}
                             }
