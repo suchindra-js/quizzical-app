@@ -1,0 +1,56 @@
+{
+  id: nanoid(),
+  question: question,
+  correctAns: correct_answer,
+  incorrerctAns: incorrect_answer,
+  clicked: false
+}
+
+
+[
+  {
+    category: "General Knowledge",
+    type: "multiple",
+    difficulty: "easy",
+    question: "In the video-game franchise Kingdom Hearts, the main protagonist, carries a weapon with what shape?",
+    correct_answer: "Key",
+    incorrect_answers: ["Sword", "Pen", "Cellphone"],
+  },
+  {
+    category: "General Knowledge",
+    type: "multiple",
+    difficulty: "easy",
+    question: "What alcoholic drink is made from molasses?",
+    correct_answer: "Rum",
+    incorrect_answers: ["Gin", "Vodka", "Whisky"],
+  },
+  {
+    category: "General Knowledge",
+    type: "multiple",
+    difficulty: "easy",
+    question: "Terry Gilliam was an animator that worked with which British comedy group?",
+    correct_answer: "Monty Python",
+    incorrect_answers:
+      [
+        "The Goodies&lrm;",
+        "The League of Gentlemen&lrm;",
+        "The Penny Dreadfuls",
+      ],
+  },
+  {
+    category: "General Knowledge",
+    type: "multiple",
+    difficulty: "easy",
+    question: "Foie gras is a French delicacy typically made from what part of a duck or goose?",
+    correct_answer: "Liver",
+    incorrect_answers: ["Heart", "Stomach", "Intestines"],
+  },
+  {
+    category: "General Knowledge",
+    type: "multiple",
+    difficulty: "easy",
+    question: "Which of the following is not an Ivy League University?",
+    correct_answer: "Stanford",
+    incorrect_answers: ["University of Pennsylvania", "Harvard", "Princeton"],
+  },
+]
