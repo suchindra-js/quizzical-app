@@ -9,19 +9,25 @@ export default function App() {
   const [revealAns, setrevealAns] = React.useState(JSON.parse(localStorage.getItem("revealAns")) || false)
   const [totalScore, setTotalScore] = React.useState(JSON.parse(localStorage.getItem("totalScore")) || 0)
 
+
   function createNewQuiz() {
-    fetch("https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple")
+    fetch('https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple')
       .then(res => res.json())
       .then(data => setQuiz(
         data.results.map(quiz => ({
           id: nanoid(),
           question: quiz.question,
           correctAns: quiz.correct_answer,
-          incorrectAns: quiz.incorrect_answers,
+          ansArray: (() => {
+            const array = [...quiz.incorrect_answers]
+            array.splice(Math.floor(Math.random() * 4), 0, quiz.correct_answer)
+            return array
+          })(),
           clicked: false
         }))
       ))
   }
+  
 
   React.useEffect(() => {
     localStorage.setItem("quiz", JSON.stringify(quiz))
@@ -43,7 +49,6 @@ export default function App() {
   }
 
   function scoreCounter() {
-    console.log("ran")
     let totalMark = 0
     quiz.map(quiz => quiz.clicked === quiz.correctAns ? totalMark++ : totalMark)
     setTotalScore(totalMark)
@@ -54,15 +59,13 @@ export default function App() {
     setrevealAns(false)
     setTotalScore(0)
   }
-   
+
   const quizList = quiz.map(quiz => {
-    const ansArray = [...quiz.incorrectAns]
-    ansArray.push(quiz.correctAns)
     return <Quiz
       key = {quiz.id}
       id = {quiz.id}  
       question={quiz.question}
-      answers={ansArray} 
+      answers={quiz.ansArray} 
       correctAns = {quiz.correctAns}
       clicked = {quiz.clicked}
       selectAns={selectAns}
