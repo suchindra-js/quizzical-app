@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@500;600;700&display=swap");
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -11,7 +13,48 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #f5f7fb;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
+
+/* utitily classes */
+button {
+  cursor: pointer;
+  background: #4d5b9e;
+  border-radius: 15px;
+  font-size: 15px;
+  padding: 13px 40px;
+  color: #f5f7fb;
+  border: none;
+}
+
+/* background-blob */
+.blob {
+  position: fixed;
+  z-index: -1;
+}
+
+.blob-1 {
+  height: 100%;
+  width: 100%;
+  background: #deebf8;
+  top: calc(80% - 5rem);
+  right: calc(50% - 5rem);
+  border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
+}
+.blob-2 {
+  height: 100%;
+  width: 100%;
+  background: #fffad1;
+  bottom: calc(80% - 5rem);
+  left: calc(50% - 5rem);
+  border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
+}
+
+/* intro */
 .intro-container {
   width: 100vw;
   height: 100vh;
@@ -19,40 +62,25 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
 }
+
 .intro-container > h1 {
-  font-size: 31.25px;
+  font-size: 50px;
   line-height: 37px;
   color: #293264;
 }
 
 .intro-container > button {
-  width: 193px;
-  height: 52px;
   background: #4d5b9e;
   border-radius: 15px;
-  font-size: 16px;
+  font-size: 20px;
+  padding: 13px 40px;
   color: #f5f7fb;
   border: none;
-}
-.blob-1 {
-  display: none;
-  /* position: absolute;
-  top: -24%;
-  right: -30%;
-  max-width: 100vw;
-  z-index: -1; */
+  margin-top: 25px;
 }
 
-.blob-2 {
-  display: none;
-  /* position: absolute;
-  bottom: -65%;
-  left: -40%;
-  max-width: 100vw; */
-}
-
+/* quiz */
 .quiz-container {
   width: 70vw;
   margin: 0 auto;
@@ -64,7 +92,7 @@ body {
 }
 
 .quiz-container > h2 {
-  font-size: 16px;
+  font-size: 25px;
   color: #293264;
   margin-block: 20px;
 }
@@ -79,7 +107,7 @@ body {
   border: 0.794239px solid #4d5b9e;
   border-radius: 7.94239px;
   padding: 5px 7px;
-  font-size: 12px;
+  font-size: 17px;
   text-align: center;
   color: #293264;
   margin-block-end: 5px;
@@ -91,4 +119,34 @@ body {
   justify-content: space-evenly;
   align-items: center;
   overflow: auto;
+}
+
+.check-answer {
+  margin-block: 10px;
+}
+
+.reset-container {
+  margin: 10px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.reset-container > p {
+  flex-basis: 55%;
+}
+
+@media only screen and (min-width: 768px) {
+  .blob-1 {
+    top: calc(65% - 5rem);
+    right: calc(65% - 5rem);
+    width: 50%;
+  }
+
+  .blob-2 {
+    bottom: calc(65% - 5rem);
+    left: calc(65% - 5rem);
+    width: 50%;
+  }
 }

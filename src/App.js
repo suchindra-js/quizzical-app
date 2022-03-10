@@ -75,13 +75,15 @@ export default function App() {
     quiz.length <= 0 ? 
     <Intro handleClick={createNewQuiz}/> :
     <div className='quiz-list'>
+      <div className="blob blob-1"></div>
       {quizList}
       {!revealAns ?
-      <button onClick={CheckAns}>Check Answers</button> :
-      <>
+      <button className='check-answer' onClick={CheckAns}>Check Answers</button> :
+      <div className='reset-container'>
         <p>You scored {totalScore}/5 correct answers</p>
         <button onClick={reset}>Play Again</button>
-      </>}
+      </div>}
+      <div className="blob blob-2"></div>
     </div>
   );
 }

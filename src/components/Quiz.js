@@ -1,4 +1,5 @@
 import React from 'react'
+import { nanoid } from 'nanoid'
 
 export default function Quiz(props) {
     return (
@@ -7,6 +8,7 @@ export default function Quiz(props) {
             <div className="answers">
                 {props.answers.map(answer => 
                     <button
+                    key = {nanoid()}
                         style={
                             !props.revealAns ?
                             {backgroundColor: props.clicked === answer ? "#D6DBF5" : "transparent"} :
