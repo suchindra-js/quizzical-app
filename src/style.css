@@ -153,6 +153,15 @@ button {
     width: 50%;
   }
 
+  .quiz-container {
+    margin-bottom: 20px;
+  }
+
+  .answers {
+    flex-direction: row;
+    gap: 10px;
+  }
+
   .reset-container {
     width: 70%;
   }
