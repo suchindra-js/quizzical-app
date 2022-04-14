@@ -23,7 +23,7 @@ export default function App() {
             array.splice(Math.floor(Math.random() * 4), 0, quiz.correct_answer)
             return array
           })(),
-          clicked: false
+          clicked: ""
         }))
       ))
   }
@@ -75,7 +75,7 @@ export default function App() {
   })
 
   return (
-    quiz.length <= 0 ? 
+    quiz.length === 0 ? 
     <Intro handleClick={createNewQuiz}/> :
     <div className='quiz-list'>
       <div className="blob blob-1"></div>
